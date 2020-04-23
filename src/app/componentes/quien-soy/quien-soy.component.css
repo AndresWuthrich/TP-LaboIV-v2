@@ -1,9 +1,8 @@
 .imagenDeQuienSoy{
     width: 100%;
-   
     }
 body {
-    font: 20px Montserrat, sans-serif;
+    font: sans-serif;
     line-height: 1.8;
     color: #f5f6f7;
 }
@@ -25,9 +24,13 @@ p {font-size: 16px;}
     background-color: #2f2f2f; /* Black Gray */
     color: #fff;
 }
+.container, a, h3 {
+    font: sans-serif;
+}
 .container-fluid {
     padding-top: 70px;
     padding-bottom: 70px;
+    font: sans-serif;
 }
 .navbar {
     padding-top: 15px;
@@ -39,5 +42,6 @@ p {font-size: 16px;}
     letter-spacing: 5px;
 }
 .navbar-nav  li a:hover {
-    color: #1abc9c !important;
+    background-image:url('../../../assets/imagenes/backTron2adw.png');
+    /* color: #1abc9c !important; */
 }

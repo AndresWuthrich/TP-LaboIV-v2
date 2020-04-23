@@ -5,9 +5,22 @@ height: 70px;
 
 .hero-text {
     text-align: center;
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    color: #100000;
-    }
+    transform: translate(-50%, -50%); 
+    color: #100000;*/
+    color:#61e6fd;
+}
+
+body{
+    background-image:url('../../../assets/imagenes/backTron2adw.png');
+ /*   background-blend-mode: hard-light;*/
+}
+
+p, a, h2{
+    font-family: sans-serif;
+}
+p:hover{
+    font-family: sans-serif;
+}
