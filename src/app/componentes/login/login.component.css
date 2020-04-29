@@ -1,4 +1,4 @@
-form {
+.form {
     border: 10px solid #f1f1f1;
     padding: 10px;
     background:#363636;
@@ -45,7 +45,7 @@ button:hover {
 }
 
 img.avatar {
-    width: 40%;
+    width: 80%;
     border-radius: 50%;
 }
 

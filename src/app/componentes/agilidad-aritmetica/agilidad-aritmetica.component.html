@@ -1,24 +1,34 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <!--app-menu></app-menu-->
 <!-- index.html -->
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div style="text-align:center">
+  <h1>
+    {{nuevoJuego.nombre}}!
+  </h1>
+ </div>
+<h2></h2>
 
 <form name="juego">
 <ul>
    <li>
-   Primer número: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%" readonly/>
+   Primer número: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese primer numero" name="numeroIngresado" 
+   type="text" class="form-control" style="width:50%" readonly/>
   
   </li>
   <li>
-   Operador: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%" readonly/>
+   Operador: <input [(ngModel)]="nuevoJuego.operador" placeholder="ingrese operador" name="operador" type="text" 
+   class="form-control" style="width:50%" readonly/>
     
   </li>
   <li>
-   Segundo número: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%" readonly/>
+   Segundo número: <input [(ngModel)]="nuevoJuego.numeroIngresado2" placeholder="ingrese segundo numero" name="numeroIngresado2" 
+   type="text" class="form-control" style="width:50%" readonly/>
     
   </li>
   <li>
-    Respuesta: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%"/>
+   Respuesta: <input [(ngModel)]="nuevoJuego.respuestaJugador" placeholder="ingrese respuesta" name="respuesta" type="text" 
+   class="form-control" style="width:50%"/>
      
    </li>
   <li>
@@ -28,7 +38,9 @@
     <h2 [hidden]="!ocultarVerificar"><button  (click)="NuevoJuego()"  class="btn btn-info btn-lg">Nuevo</button></h2>
   </li>
   <li>
-    <h2><p><i class="fa fa-spinner fa-spin"></i>Esperando numero...</p></h2>
+    <h2 *ngIf="!ocultarVerificar">
+      <p><i class="fa fa-spinner fa-spin"></i>Esperando numero...</p>
+    </h2>
 
     <h3 [hidden]="!nuevoJuego.gano">usted adivino el número</h3>
     <h3 [hidden]="nuevoJuego.gano">usted aún no gano </h3>
@@ -36,3 +48,4 @@
 </ul>
 
 </form>
+<!-- <div id="snackbar">{{Mensajes}}</div> -->
