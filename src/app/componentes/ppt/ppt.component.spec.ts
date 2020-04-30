@@ -18,8 +18,8 @@ describe('PptComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('should create', () => {
+  
+  it('should be created', () => {
     expect(component).toBeTruthy();
   });
 });

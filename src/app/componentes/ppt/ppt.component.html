@@ -1,1 +1,34 @@
-<p>ppt works!</p>
+<!-- <p>ppt works!</p> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div style="text-align:center">
+  <h1>
+    {{nuevoJuego.nombre}}!
+  </h1>
+ </div>
+<h2></h2>
+
+<form name="juego">
+    <ul>
+        <li>
+           <p><button class="button btn btn-info btn-lg" (click)="jugar('piedra')">Piedra</button></p>
+        </li>
+
+        <li>
+          <p><button class="button btn btn-info btn-lg" (click)="jugar('papel')">Papel</button></p>
+        </li>
+
+        <li>
+          <p><button class="button btn btn-info btn-lg" (click)="jugar('tijera')">Tijera</button></p>
+        </li>
+
+        <li [hidden]="elegido" class="container" style="text-align:center">
+            <h1>Elemento elegido por tu rival:</h1>
+            <h1>{{this.nuevoJuego.elegidoMaquina}}</h1>
+        </li>
+    
+        <li [hidden]="elegido">
+          <h1 >{{resultado}}</h1>
+        </li>
+
+    </ul>
+</form>
