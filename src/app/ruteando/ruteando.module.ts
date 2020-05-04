@@ -22,7 +22,9 @@ import { ListadoDePaisesComponent } from '../componentes/listado-de-paises/lista
 import { MapaDeGoogleComponent } from '../componentes/mapa-de-google/mapa-de-google.component'
 import { JugadoresListadoComponent } from '../componentes/jugadores-listado/jugadores-listado.component';
 import { PptComponent } from '../componentes/ppt/ppt.component';
-
+import { AnagramaComponent } from '../componentes/anagrama/anagrama.component';
+import { TatetiComponent } from '../componentes/tateti/tateti.component';
+import { SimonComponent } from '../componentes/simon/simon.component';
 
 // declaro donde quiero que se dirija
 const MiRuteo = [
@@ -44,7 +46,10 @@ children:
       {path: 'AdivinaMasListado' , component: AdivinaMasListadoComponent},
       {path: 'AgilidadaMasListado' , component: AgilidadMasListadoComponent},
       {path: 'Agilidad' , component: AgilidadAritmeticaComponent},
-      {path: 'PPT' , component: PptComponent}]
+      {path: 'PPT' , component: PptComponent},
+      {path: 'Tateti' , component: TatetiComponent},
+      {path: 'Simon' , component: SimonComponent},
+      {path: 'Anagrama' , component: AnagramaComponent}]
 },
 {path: '**' , component: ErrorComponent},
 {path: 'error' , component: ErrorComponent}];

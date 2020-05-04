@@ -4,7 +4,8 @@
     background:#363636;
 }
 label{
-    color: honeydew;
+    color: #61e6fd;
+    font-family: sans-serif;
 }
 input[type=text], input[type=password] {
     width: 100%;
@@ -51,7 +52,6 @@ img.avatar {
 
 .container {
     padding: 16px;
-    font-family: sans-serif;
 }
 
 span.psw {
