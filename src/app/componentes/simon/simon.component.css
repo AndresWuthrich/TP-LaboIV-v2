@@ -3,6 +3,7 @@ form{
     border: 10px solid #f1f1f1;
     padding: 10px;
     background:gray;
+    background-image:url('../../../assets/imagenes/backTron2adw.png');
   }
   
   button {
@@ -19,25 +20,24 @@ form{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin: 10px;
   }
   
   img{
     width: 100%;  
   }
 
-
-
   body {
-    margin: 0;
+    margin: 10px;
     background: #dedede;
     display: flex;
     align-items: center;
     height: 100vh;
   }
   .gameboard {
-    height: 100vh;
-    width: 100vh;
-    border-radius: 70%;
+    height: 80vh;
+    width: 80vh;
+    border-radius: 0%;
     overflow: hidden;
     margin: 0 auto;
     max-height: 60vh;

@@ -7,7 +7,10 @@ body {
     color: #f5f6f7;
 }
 p {font-size: 16px;}
+
 .margin {margin-bottom: 45px;}
+.marginTop {margin-top: 25px;}
+
 .bg-1 { 
     /* background-image:url('../../../assets/imagenes/backTron2adw.png'); */
     background-color: #02856a; /* Green */
@@ -44,4 +47,10 @@ p {font-size: 16px;}
 }
 .navbar-nav  li a:hover {
     color: #1abc9c !important;
+}
+.form {
+    /* border: 10px solid #f1f1f1;
+    padding: 10px; */
+    background:#363636;
+    background-image:url('../../../assets/imagenes/backTron2adw.png');
 }

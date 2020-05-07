@@ -11,10 +11,10 @@
 <form name="juego">
 
   <div>
-    <h1>Anagrama: {{anagrama}}</h1>
+    <h2>Anagrama: {{anagrama}}</h2>
 
     <div *ngIf="terminoJuego" id='resultado' class="boton" style="width: 200px; height: 100px;">
-      <h1>{{resultado}}</h1>
+      <h2>{{resultado}}</h2>
       <img src="{{imagen}}">
     </div>
 
@@ -27,7 +27,7 @@
       <button mat-raised-button color="accent" class="button btn btn-info btn-lg" (click)="comprobarRespuesta()">Listo</button>
     </div>
     <div *ngIf="!empezoJuego" id='instrucciones'>
-      <h1>Presione el boton Nuevo para comenzar a jugar</h1>
+      <h2>Presione el boton Nuevo para comenzar</h2>
     </div>
   </div>
 </form>

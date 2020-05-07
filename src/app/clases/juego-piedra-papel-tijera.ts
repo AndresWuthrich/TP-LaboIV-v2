@@ -10,7 +10,6 @@ export class JuegoPiedraPapelTijera extends Juego {
         super("Piedra, papel o tijera", gano, jugador);
 
     }
-    
 
     public verificar(): boolean {
         if((this.elegidoMaquina=="piedra" && this.elegidoUsuario=="papel") || (this.elegidoMaquina=="tijera" && this.elegidoUsuario=="piedra") || (this.elegidoMaquina=="papel" && this.elegidoUsuario=="tijera"))

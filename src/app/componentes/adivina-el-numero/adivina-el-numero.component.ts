@@ -1,5 +1,7 @@
 import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
 import { JuegoAdivina } from '../../clases/juego-adivina'
+import { LocalStorageService } from '../../servicios/localStorage.service';
+import { Jugador } from '../../clases/jugador';
 
 @Component({
   selector: 'app-adivina-el-numero',
@@ -7,17 +9,23 @@ import { JuegoAdivina } from '../../clases/juego-adivina'
   styleUrls: ['./adivina-el-numero.component.css']
 })
 export class AdivinaElNumeroComponent implements OnInit {
- @Output() enviarJuego: EventEmitter<any>= new EventEmitter<any>();
+ @Output() 
+ enviarJuego: EventEmitter<any>= new EventEmitter<any>();
 
   nuevoJuego: JuegoAdivina;
-  Mensajes:string;
-  contador:number;
-  ocultarVerificar:boolean;
+  Mensajes: string;
+  contador: number;
+  ocultarVerificar: boolean;
+  servicio: LocalStorageService;
+  jugadorLogueado: Jugador;
  
   constructor() { 
     this.nuevoJuego = new JuegoAdivina();
     console.info("numero Secreto:",this.nuevoJuego.numeroSecreto);  
     this.ocultarVerificar=false;
+
+    this.servicio = new LocalStorageService();
+    this.jugadorLogueado=this.servicio.traerLogeado();  
   }
   generarnumero() {
     this.nuevoJuego.generarnumero();
@@ -34,8 +42,15 @@ export class AdivinaElNumeroComponent implements OnInit {
       this.MostarMensaje("Sos un Genio!!!",true);
       this.nuevoJuego.numeroSecreto=0;
 
-    }else{
-
+      if( (typeof this.jugadorLogueado !== 'undefined') &&  (this.jugadorLogueado !== null))
+      {
+        this.nuevoJuego.jugador=this.jugadorLogueado.mail;
+      }
+      this.nuevoJuego.gano= this.nuevoJuego.verificar();
+  
+      this.servicio.guardarJuego(this.nuevoJuego);
+    }
+    else{
       let mensaje:string;
       switch (this.contador) {
         case 1:
@@ -62,7 +77,6 @@ export class AdivinaElNumeroComponent implements OnInit {
           break;
       }
       this.MostarMensaje("#"+this.contador+" "+mensaje+" ayuda :"+this.nuevoJuego.retornarAyuda());
-     
 
     }
     console.info("numero Secreto:",this.nuevoJuego.gano);  
@@ -87,5 +101,4 @@ export class AdivinaElNumeroComponent implements OnInit {
    }  
   ngOnInit() {
   }
-
 }

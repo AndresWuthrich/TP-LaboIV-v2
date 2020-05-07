@@ -3,6 +3,9 @@ import { JuegoAgilidad } from '../../clases/juego-agilidad'
 
 import {Subscription} from "rxjs";
 import {TimerObservable} from "rxjs/observable/TimerObservable";
+import { LocalStorageService } from '../../servicios/localStorage.service';
+import { Jugador } from '../../clases/jugador';
+
 @Component({
   selector: 'app-agilidad-aritmetica',
   templateUrl: './agilidad-aritmetica.component.html',
@@ -12,20 +15,32 @@ export class AgilidadAritmeticaComponent implements OnInit {
    @Output() 
   enviarJuego :EventEmitter<any>= new EventEmitter<any>();
   nuevoJuego : JuegoAgilidad;
+
   ocultarVerificar: boolean;
   Tiempo: number;
   repetidor:any;
   private subscription: Subscription;
+  servicio: LocalStorageService;
+  jugadorLogueado: Jugador;
+  perdio: boolean;
+  ganador: boolean;
+  
   ngOnInit() {
   }
-   constructor() {
-     this.ocultarVerificar=true;
-     this.Tiempo=5; 
+  
+  constructor() {
+    this.ocultarVerificar=true;
+    this.Tiempo=7; 
     this.nuevoJuego = new JuegoAgilidad();
     console.info("Inicio agilidad");  
+
+    this.servicio = new LocalStorageService();
+    this.jugadorLogueado=this.servicio.traerLogeado();  
   }
+  
   NuevoJuego() {
     this.ocultarVerificar=false;
+    this.ganador= false;
 
     this.nuevoJuego.generarOperacion();
     
@@ -39,37 +54,24 @@ export class AgilidadAritmeticaComponent implements OnInit {
         this.ocultarVerificar=true;
         this.Tiempo=5;
       }
-      }, 900);
+    }, 900);
 
   }
 
   verificar()
   {
-    if (this.nuevoJuego.verificar()) {
-      this.ocultarVerificar=false;
+      this.ocultarVerificar=true;
+      this.ganador= true;
       clearInterval(this.repetidor);
 
-      // this.enviarJuego.emit(this.nuevoJuego);
-      // this.MostarMensaje("Sos un Genio!!!",true);
-      // this.nuevoJuego.numeroSecreto=0;
-    }
+      this.perdio=!(this.nuevoJuego.verificar());
+  
+      if( (typeof this.jugadorLogueado !== 'undefined') &&  (this.jugadorLogueado !== null))
+      {
+        this.nuevoJuego.jugador=this.jugadorLogueado.mail;
+      }
+      this.nuevoJuego.gano= this.nuevoJuego.verificar();
+  
+      this.servicio.guardarJuego(this.nuevoJuego);
   }
-  
-  // MostarMensaje(mensaje:string="este es el mensaje",ganador:boolean=false) {
-  //   this.Mensajes=mensaje;    
-  //   var x = document.getElementById("snackbar");
-  //   if(ganador)
-  //     {
-  //       x.className = "show Ganador";
-  //     }else{
-  //       x.className = "show Perdedor";
-  //     }
-  //   var modelo=this;
-  //   setTimeout(function(){ 
-  //     x.className = x.className.replace("show", "");
-  //     modelo.ocultarVerificar=false;
-  //    }, 3000);
-  //   console.info("objeto",x);
-  
-  //  }  
 }

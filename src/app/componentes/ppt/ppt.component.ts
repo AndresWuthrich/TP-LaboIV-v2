@@ -1,6 +1,7 @@
 import { Component, OnInit ,Input,Output,EventEmitter } from '@angular/core';
 import { JuegoPiedraPapelTijera } from '../../clases/juego-piedra-papel-tijera'
-
+import { LocalStorageService } from '../../servicios/localStorage.service';
+import { Jugador } from '../../clases/jugador';
 @Component({
   selector: 'app-ppt',
   templateUrl: './ppt.component.html',
@@ -18,12 +19,17 @@ export class PptComponent implements OnInit {
   rutaDeFoto:string;  
   resultado:string;
   ganar: boolean;
+  servicio: LocalStorageService;
+  jugadorLogueado: Jugador;
 
 
   constructor() {
     this.nuevoJuego = new JuegoPiedraPapelTijera();
     console.info("Piedra papel o tijera:");//,this.nuevoJuego);  
     this.ocultarVerificar=false;
+
+    this.servicio=new LocalStorageService();
+    this.jugadorLogueado=this.servicio.traerLogeado();    
    }
 
    jugar(humanoObjeto:string){
@@ -34,13 +40,27 @@ export class PptComponent implements OnInit {
 
     if(this.nuevoJuego.verificar()){
       this.resultado="GANASTE";
-    }else if (this.nuevoJuego.elegidoUsuario==this.nuevoJuego.elegidoMaquina)
-    this.resultado="EMPATASTE... ¿Lo intentarás de nuevo?";
-    else
-    this.resultado="PERDISTE... ¿Lo intentarás de nuevo?";
-  }
+      this.nuevoJuego.gano=true;
+    }
+    else if (this.nuevoJuego.elegidoUsuario==this.nuevoJuego.elegidoMaquina)
+      this.resultado="EMPATASTE... ¿Lo intentarás de nuevo?";
+    else{
+      this.resultado="PERDISTE... ¿Lo intentarás de nuevo?";
+      this.nuevoJuego.gano=false;
+    }
 
-  ngOnInit(): void {
+    if( (typeof this.jugadorLogueado !== 'undefined') &&  (this.jugadorLogueado!== null))
+    {
+      this.nuevoJuego.gano= this.nuevoJuego.verificar();
+      this.nuevoJuego.jugador=this.jugadorLogueado.mail;
+    }
+    else{
+      this.nuevoJuego.gano= this.nuevoJuego.verificar();
+    }
+
+    this.servicio.guardarJuego(this.nuevoJuego);
   }
-  
+    
+  ngOnInit(): void {
+  }  
 }

@@ -1,6 +1,9 @@
 import { Component, OnInit ,Input,Output,EventEmitter } from '@angular/core';
 import { JuegoTateti } from '../../clases/juego-tateti'
 
+import { LocalStorageService } from '../../servicios/localStorage.service';
+import { Jugador } from '../../clases/jugador';
+
 @Component({
   selector: 'app-tateti',
   templateUrl: './tateti.component.html',
@@ -11,6 +14,8 @@ export class TatetiComponent implements OnInit {
   @Output() 
   enviarJuego: EventEmitter<any>= new EventEmitter<any>();
   nuevoJuego: JuegoTateti;
+  servicio: LocalStorageService;
+  jugadorLogueado: Jugador;
 
   ganoO=false;
   ganoX=false;
@@ -20,7 +25,10 @@ export class TatetiComponent implements OnInit {
   constructor() {
     this.nuevoJuego = new JuegoTateti();
     console.info("Tateti:");//,this.nuevoJuego);      
-   }
+
+    this.servicio = new LocalStorageService();
+    this.jugadorLogueado=this.servicio.traerLogeado();  
+  }
 
   ngOnInit(): void {
   }
@@ -68,7 +76,20 @@ export class TatetiComponent implements OnInit {
       this.ganoO=true;
       this.ganador=true;
     }  
-  }
+    // this.ocultarVerificar=true;
+    // this.ganador= true;
+    // clearInterval(this.repetidor);
+
+    // this.perdio=!(this.nuevoJuego.verificar());
+
+    if( (typeof this.jugadorLogueado !== 'undefined') &&  (this.jugadorLogueado !== null))
+    {
+      this.nuevoJuego.jugador=this.jugadorLogueado.mail;
+    }
+    this.nuevoJuego.gano= this.nuevoJuego.verificar();
+
+    this.servicio.guardarJuego(this.nuevoJuego);
+}
   verificarGano(ficha: string) {
     if (this.posiciones[0][0]==ficha && this.posiciones[0][1]==ficha && this.posiciones[0][2]==ficha)
       this.chequear(ficha);

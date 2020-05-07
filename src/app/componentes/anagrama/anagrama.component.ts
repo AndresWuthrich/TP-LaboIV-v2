@@ -1,5 +1,7 @@
 import { Component, OnInit ,Input,Output,EventEmitter } from '@angular/core';
 import { JuegoAnagrama } from '../../clases/juego-anagrama'
+import { LocalStorageService } from '../../servicios/localStorage.service';
+import { Jugador } from '../../clases/jugador';
 
 @Component({
   selector: 'app-anagrama',
@@ -20,11 +22,15 @@ export class AnagramaComponent implements OnInit {
   empezoJuego:boolean;
   terminoJuego:boolean;
   imagen:string;
+  servicio: LocalStorageService;
+  jugadorLogueado: Jugador;
 
   constructor() {
     this.nuevoJuego = new JuegoAnagrama();
     console.info("Anagrama:");//,this.nuevoJuego);  
     this.terminoJuego = false;
+    this.servicio=new LocalStorageService();
+    this.jugadorLogueado=this.servicio.traerLogeado();
    }
 
   ngOnInit() {
@@ -74,6 +80,19 @@ export class AnagramaComponent implements OnInit {
       this.imagen = "./assets/imagenes/tildeMALadw.jpg";
       console.log("Incorrecta");
     }
+
+    // this.nuevoJuego.palabraIngresada=resp;
+    // this.ganador=!this.nuevoJuego.verificar();
+    // this.perdedor=!this.ganador;
+    // this.verTiempo=true;
+
+    if( (typeof this.jugadorLogueado !== 'undefined') &&  (this.jugadorLogueado!== null))
+    {
+      this.nuevoJuego.jugador=this.jugadorLogueado.mail;
+    }
+    this.nuevoJuego.gano= this.nuevoJuego.verificar();
+
+    this.servicio.guardarJuego(this.nuevoJuego);
   }
 
   NuevoJuego() {

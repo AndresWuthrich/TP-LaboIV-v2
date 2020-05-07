@@ -6,13 +6,20 @@
   </h1>
  </div>
 <h2></h2>
-<form name="juego">
+<form name="juego" class="boton">
 
     <div class="gameboard">
-        <div id="rojo" class="color rojo left"></div>
-        <div id="verde" class="color verde right"></div>
-        <div id="azul" class="color azul left"></div>
-        <div id="amarillo" class="color amarillo right"></div>
-        <!-- <button [hidden]="!nuevoJuego" id="btnEmpezar" class="btn btn-info btn-lg btn-start" (click)="empezarJuego()">Nuevo</button> -->
+        <div id="rojo" class="color rojo left" (click)="elegirColor(rojo)"></div>
+        <div id="verde" class="color verde right" (click)="elegirColor(verde)"></div>
+        <div id="azul" class="color azul left" (click)="elegirColor(azul)"></div>
+        <div id="amarillo" class="color amarillo right" (click)="elegirColor(amarillo)"></div>
+    </div>
+
+    <div>
+      <button [hidden]="!newJuego" id="btnEmpezar" class="btn btn-info btn-lg btn-start" (click)="empezarJuego()">Nuevo</button>
+    </div>
+
+    <div>
+      <img src="../../../assets/imagenes/outOfOrderadw.jpg" class="boton" style="width: 300px; height: 300px;">
     </div>
 </form>

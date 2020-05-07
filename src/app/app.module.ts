@@ -56,6 +56,7 @@ import { SexoPipe } from './pipes/sexo.pipe';
 import { PptComponent } from './componentes/ppt/ppt.component';
 import { TatetiComponent } from './componentes/tateti/tateti.component';
 import { SimonComponent } from './componentes/simon/simon.component';
+import { LocalStorageService } from './servicios/localStorage.service';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,7 @@ import { SimonComponent } from './componentes/simon/simon.component';
     SexoPipe,
     PptComponent,
     TatetiComponent,
-    SimonComponent
+    SimonComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,7 +99,7 @@ import { SimonComponent } from './componentes/simon/simon.component';
     // importo el ruteo
     // RouterModule.forRoot(MiRuteo)
   ],
-  providers: [ JuegoServiceService, MiHttpService,PaisesService,ArchivosJugadoresService,JugadoresService],
+  providers: [ JuegoServiceService, MiHttpService,PaisesService,ArchivosJugadoresService,JugadoresService, LocalStorageService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { }  

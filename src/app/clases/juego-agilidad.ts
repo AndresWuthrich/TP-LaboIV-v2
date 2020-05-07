@@ -8,8 +8,7 @@ export class JuegoAgilidad extends Juego {
     respuesta:number;
     gano:boolean;    
 
-    constructor(nombre?: string, gano?: boolean, jugador?: string)
-    {
+    constructor(nombre?: string, gano?: boolean, jugador?: string){
       super("Agilidad Matematica", gano, jugador);
        this.respuestaJugador=0;
     }
@@ -20,7 +19,8 @@ export class JuegoAgilidad extends Juego {
       }
       if (this.gano) {
         return true;
-      } else {
+      } 
+      else {
         return false;
       }
     }
@@ -45,7 +45,7 @@ export class JuegoAgilidad extends Juego {
         this.gano = false;
     }
   
-      private aleatorio(a,b){
-          return Math.round(Math.random()*(b-a)+a);
-      }
+    private aleatorio(a,b){
+        return Math.round(Math.random()*(b-a)+a);
+    }
 }

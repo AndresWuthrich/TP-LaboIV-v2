@@ -11,7 +11,7 @@ export class JuegoAnagrama extends Juego{
     }
 
     public verificar(): boolean {        
-        if(this.palabraIngresada.toLowerCase()==this.palabraSorteada)
+        if(this.palabraIngresada==this.palabraSorteada)
             return true;
         else    
             return false;

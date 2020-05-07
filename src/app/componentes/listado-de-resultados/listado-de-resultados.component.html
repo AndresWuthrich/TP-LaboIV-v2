@@ -5,8 +5,9 @@
 
 </div-->
 
-<table class="table table-condensed">
-    <thead>
+<form name="resultados">
+  <table class="table table-condensed">
+    <thead class="form">
       <tr>
         <th>Juego</th>
         <th>Jugador</th>
@@ -17,9 +18,9 @@
       <tr *ngFor="let juego of listado">
         <td>{{juego.nombre}} </td>
         <td>{{juego.jugador}} </td> 
-        <td *ngIf="juego.gano">Gano </td>   
-        <td *ngIf="!juego.gano">Perdio</td>     
-      </tr>
-     
+        <td *ngIf="juego.gano">Ganó</td>   
+        <td *ngIf="!juego.gano">Perdió</td>     
+      </tr>     
     </tbody>
   </table>
+</form>
