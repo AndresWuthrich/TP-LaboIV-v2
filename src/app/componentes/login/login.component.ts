@@ -40,10 +40,10 @@ export class LoginComponent implements OnInit {
     {
       this.router.navigate(['/Principal']);
     }
-    // else{
+    else{
 
-    //   this.router.navigate(["/Juegos"]);
-    // }
+      this.router.navigate(["/Juegos"]);
+    }
   }
 
   MoverBarraDeProgreso(user:string, clave:string) {
@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit {
             console.log("final");
             this.subscription.unsubscribe();
             this.Entrar();
-            this.router.navigate(["/Juegos"]);          
+//            this.router.navigate(["/Juegos"]);          
             break;
         }     
         this.servicio.iniciarJugador(user, clave);      
