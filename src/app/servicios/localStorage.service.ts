@@ -104,7 +104,7 @@ export class LocalStorageService {
     {
       juegosDB=new Array();
       juegosDB.push(juego);  
-        localStorage.setItem(this.listaResultados,JSON.stringify(juegosDB));
+      localStorage.setItem(this.listaResultados,JSON.stringify(juegosDB));
     }
   }
 }

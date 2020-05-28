@@ -1,5 +1,5 @@
 form{
-    font-family: sans-serif;
+    font-family: Impact;
     border: 10px solid #f1f1f1;
     padding: 10px;
     background:gray;
@@ -29,6 +29,9 @@ button:hover {
     opacity: 0.8;
 }
 
+h1 {
+    font-family: Impact;
+}
 h2{
     color: white;
 }

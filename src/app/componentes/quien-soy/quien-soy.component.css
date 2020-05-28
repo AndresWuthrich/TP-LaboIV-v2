@@ -2,9 +2,9 @@
     width: 100%;
     }
 body {
-    font: sans-serif;
     line-height: 1.8;
     color: #f5f6f7;
+    font-family: Impact;
 }
 p {font-size: 16px;}
 
@@ -28,13 +28,12 @@ p {font-size: 16px;}
     background-color: #2f2f2f; /* Black Gray */
     color: #fff;
 }
-.container, a, h3 {
-    font: sans-serif;
+.container, a, h3, p {
+    font-family: Impact;
 }
 .container-fluid {
     padding-top: 60px;
     padding-bottom: 60px;
-    font: sans-serif;
 }
 .navbar {
     padding-top: 15px;

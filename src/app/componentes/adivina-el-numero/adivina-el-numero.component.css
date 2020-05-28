@@ -3,6 +3,7 @@ form {
     padding: 10px;
     background:gray;
     background-image:url('../../../assets/imagenes/backTron2adw.png');
+    font-family: Impact;
 }
 
 input[type=text], input[type=password] {
@@ -84,6 +85,10 @@ span.psw {
     left: 50%;
     bottom: 30px;
     font-size: 17px;
+}
+
+h1 {
+    font-family: Impact;
 }
 
 h2,h3{

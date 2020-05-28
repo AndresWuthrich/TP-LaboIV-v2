@@ -1,6 +1,6 @@
 .imagenDeMenu{
-width: 80px;
-height: 70px;
+    width: 80px;
+    height: 70px;
 }
 
 .hero-text {
@@ -19,8 +19,5 @@ body{
 }
 
 p, a, h2{
-    font-family: sans-serif;
-}
-p:hover{
-    font-family: sans-serif;
+    font-family: Impact;
 }

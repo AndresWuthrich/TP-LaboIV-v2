@@ -3,4 +3,9 @@
     padding: 10px;
     background:gray;
     /* background-image:url('../../../assets/imagenes/backTron2adw.png'); */
+    font-family: Impact;
+}
+
+.table {
+    font-family: Impact;
 }
