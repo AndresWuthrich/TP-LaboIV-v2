@@ -82,12 +82,12 @@ export class TatetiComponent implements OnInit {
 
     // this.perdio=!(this.nuevoJuego.verificar());
 
+    this.nuevoJuego.gano= this.nuevoJuego.verificar();
     if( (typeof this.jugadorLogueado !== 'undefined') &&  (this.jugadorLogueado !== null))
     {
       this.nuevoJuego.jugador=this.jugadorLogueado.mail;
     }
-    this.nuevoJuego.gano= this.nuevoJuego.verificar();
-
+    
     this.servicio.guardarJuego(this.nuevoJuego);
 }
   verificarGano(ficha: string) {

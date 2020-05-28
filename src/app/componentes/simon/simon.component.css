@@ -1,40 +1,22 @@
-form{
+.container{
     font-family: Impact;
     border: 10px solid #f1f1f1;
     padding: 10px;
     background:gray;
     background-image:url('../../../assets/imagenes/backTron2adw.png');
-}
 
-button {
-    /*background-color: #4CAF50;*/
-    color: white;
-    padding: 14px 20px;
-    margin: 10px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  .boton{
+    /*para mostrar cartel*/
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: 10px;
-  }
-  
-  img{
-    width: 100%;  
-  }
+}
 
-  body {
-    margin: 10px;
-    background: #dedede;
-    display: flex;
-    align-items: center;
-    height: 100vh;
-  }
-  .gameboard {
+h1{
+    font-family: Impact;
+}
+
+.gameboard {
     height: 80vh;
     width: 80vh;
     border-radius: 0%;
@@ -42,55 +24,45 @@ button {
     margin: 0 auto;
     max-height: 60vh;
     max-width: 60vh;
-  }
-  .color {
+}
+.color {
     width: 50%;
     height: 50%;
     display: inline-block;
-  }
-  .left {
+}
+.left {
     float: left;
-  }
-  .right {
+}
+.right {
     float: left;
-  }
-  .rojo {
+}
+.rojo {
     background: red;
-  }
-  .red.light {
+}
+.red.light {
     background: rgb(253, 135, 135);
-  }
-  .verde {
+}
+.verde {
     background: rgb(3, 206, 3);
-  }
-  .verde.light {
+}
+.verde.light {
     background: rgb(174, 250, 174);
-  }
-  .azul {
+}
+.azul {
     background: blue;
-  }
-  .azul.light {
+}
+.azul.light {
     background: rgb(122, 122, 255);
-  }
-  .amarillo {
+}
+.amarillo {
     background: yellow;
-  }
-  .amarillo.light {
+}
+.amarillo.light {
     background: rgb(252, 252, 158);
-  }
-  .btn-start {
-    width: 400px;
-    height: 100px;
-    background: #ecf0f1;
-    color: #2c3e50;
-    font-size: 2.5rem;
-    position: absolute;
-    top: calc(50% - 50px);
-    left: calc(50% - 200px);
-  }
-  .hide {
+}
+.hide {
     display: none;
-  }
+}
 
 .simonBoard{
   margin: 0 auto;
@@ -112,18 +84,6 @@ button {
     opacity: 0.5;
 }
 
-.controls{
-    width: 215px;
-    height: 215px;
-    margin-left: 107px;
-    margin-top: 107px;
-    background-color: white;
-    border: solid 10px black;
-    border-radius: 150px;
-    position: absolute;
-    z-index: 10;
-}
-
 #pad1{
     background-color: rgb(0,255,0);
     border-radius: 300px 0 0 0;
@@ -142,22 +102,6 @@ button {
 #pad4{
     background-color: rgb(0,0,255);
     border-radius: 0 0 300px 0;
-}
-
-#start{
-    border-color: black;
-    width: 97px;
-    height: 195px;
-    border-top-left-radius: 100px;
-    border-bottom-left-radius: 100px;
-}
-
-#reset{
-    border-color: black;
-    width: 98px;
-    height: 195px;
-    border-top-right-radius: 100px;
-    border-bottom-right-radius: 100px;
 }
 
 .pad:hover{

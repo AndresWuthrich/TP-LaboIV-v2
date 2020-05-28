@@ -12,7 +12,6 @@ export class SimonComponent implements OnInit {
   enviarJuego: EventEmitter<any>= new EventEmitter<any>();
   nuevoJuego: JuegoSimon;
   nivel= 0;
-  colores: {};
   secuencia: Array<any>;
   subnivel: number;
   resultado: string;
@@ -20,8 +19,16 @@ export class SimonComponent implements OnInit {
   newJuego= true;
   light= false;
 
-  ev = new Event("elegirColor(ev)");
-  
+  private colores: Array<string> = ["verde","rojo","amarillo","azul"];
+  private userColours: Array<string> = new Array<string>();
+  private machineColours: Array<string> = new Array<string>();
+  private level:number = 1;
+  private levelJson:object = JSON.parse('{ "rounds":[{ "level":"1", "steps":"3", "speed":"800" }, { "level":"2", "steps":"2", "speed":"750" }, {"level":"3", "steps":"2", "speed":"700" }, {"level":"4", "steps":"3", "speed":"650" }, {"level":"5", "steps":"5", "speed":"600" }] }');
+  private rounds:object = this.levelJson["rounds"]; 
+  private isPlaying:boolean = false;
+  private currentStep:number = 0;
+  private speed:number = 800
+ 
   constructor() {
     this.nuevoJuego = new JuegoSimon();
     console.info("Simon:");//,this.nuevoJuego);      
@@ -32,274 +39,26 @@ export class SimonComponent implements OnInit {
 
   empezarJuego(){
     this.newJuego= false;
-
-    this.inicializar = this.inicializar.bind(this)
-    this.inicializar()
-    this.generarSecuencia()
-    setTimeout(this.siguienteNivel, 500)
   }
 
-  btnEmpezar = document.getElementById('btnEmpezar')
-
-  rojo = document.getElementById('rojo')
-  verde = document.getElementById('verde')
-  azul = document.getElementById('azul')
-  amarillo = document.getElementById('amarillo')
-  ULTIMO_NIVEL = 5
-
-  inicializar(){
-    this.elegirColor = this.elegirColor.bind(this)
-    this.siguienteNivel = this.siguienteNivel.bind(this)//esta atado al juego
-
-    this.nivel = 1
-    this.colores = {
-    rojo: this.rojo,
-    verde: this.verde, //es lo mismo que celeste: celestes (referente al boton)
-    azul: this.azul,
-    amarillo: this.amarillo
-    }
+  clearVariables(){
+    this.userColours = [];
+    this.currentStep=0;
   }
 
-  generarSecuencia(){
-    this.secuencia = new Array(this.ULTIMO_NIVEL).fill(0).map(n => Math.floor(Math.random() * 4))
+  fillMachineColours(steps){
+    for(let x:number = 0; x < steps; x++){
+      let randomValue = this.colores[Math.floor(Math.random() * this.colores.length)];
+      this.machineColours.push(randomValue);
+    }
+  }  
+
+  showSteps() {
+    let self = this;
+    if(self.currentStep > self.machineColours.length-1) {
+      self.currentStep = 0;
+      return;
+    }
+    var color = self.machineColours[self.currentStep];
   }
-
-  siguienteNivel(){
-//        this.subnivel = 0
-    this.iluminarSecuencia()
-  }
-
-    transformarNumeroAColor(numero){
-        switch(numero){
-            case 0:
-                return 'rojo'
-            case 1:
-                return 'verde'
-            case 2:
-                return 'azul'
-            case 3:
-                return 'amarillo'
-        }
-    }
-
-    transformarColorANumero(numero){
-        switch(numero){
-            case 'rojo':
-                return 0
-            case 'verde':
-                return 1
-            case 'azul':
-                return 2
-            case 'amarillo':
-                return 3
-        }
-    }
-
-    iluminarSecuencia(){
-
-        for(let i = 0; i < this.nivel; i++){
-
-            const color = this.transformarNumeroAColor(this.secuencia[i])
-//             console.log(color)
-            setTimeout(() => {
-
-//            console.log(color)
-            this.iluminarColor(color)
-            }, 1000 * i)//de esta manera se ilumina el color despues de un tiempo, ya que en el for los colores se iluminarian inmediatamente
-        }
-    }
-
-    iluminarColor(color){
- //       console.log(color)
- 
-        if(color=='verde'){
-//            console.log(color)
-            document.getElementById(color).classList.add('verde.light');
-        }
-        if(color=='rojo'){
-//            console.log(color)
-            document.getElementById(color).classList.add('rojo.light');
-        }
-        if(color=='azul'){
-//            console.log(color)
-            document.getElementById(color).classList.add('azul.light');
-        }
-        if(color=='amarillo'){
-//            console.log(color)
-            document.getElementById(color).classList.add('amarillo.light');
-        }
-        setTimeout(() => this.apagarColor(color), 350)
-    }
-
-    apagarColor(color){
-   //     this.colores[color].classList.remove('light')
-    }
-
-    elegirColor(ev){
-        console.log(ev)
-
-        // const nombreColor = ev.target.dataset.color
-        // const numeroColor = this.transformarColorANumero(nombreColor)
-        // this.iluminarColor(nombreColor)
-        
-        // if(numeroColor === this.secuencia[this.subnivel]){
-        //     this.subnivel++//se incrementa
-
-        //     if(this.subnivel === this.nivel){
-        //     this.nivel++
-
-        //     if(this.nivel === (this.ULTIMO_NIVEL + 1)){
-        //             this.ganoElJuego()
-        //         }
-        //         else{
-        //             setTimeout(this.siguienteNivel, 1500)//se utiliza bind en inicializar()
-        //         }
-        //     }
-        // }
-        // else{
-        //     this.perdioElJuego()
-        // }
-    }
-
-    ganoElJuego(){
-        this.resultado="GANASTE !!!";
-
-        this.inicializar();
-    }
-
-    perdioElJuego(){
-        this.resultado="PERDISTE !!!";
-
-        this.inicializar();
-    }
 }
-
-
-// version 2
-
-
-//  import { Component, OnInit } from '@angular/core';
-
-// import * as $ from 'jquery';
-// //import $ from 'jquery';
-// @Component({
-//   selector: 'app-simon',
-//   templateUrl: './simon.component.html',
-//   styleUrls: ['./simon.component.scss']
-// })
-// export class SimonComponent implements OnInit {
-
-//   constructor() { }
-
-//   private colours: Array<string> = ["green","red","yellow","blue"];
-//   private userColours: Array<string> = new Array<string>();
-//   private machineColours: Array<string> = new Array<string>();
-//   private level:number = 1;
-//   private levelJson:object = JSON.parse('{ "rounds":[{ "level":"1", "steps":"3", "speed":"800" }, { "level":"2", "steps":"2", "speed":"750" }, {"level":"3", "steps":"2", "speed":"700" }, {"level":"4", "steps":"3", "speed":"650" }, {"level":"5", "steps":"5", "speed":"600" }] }');
-//   private rounds:object = this.levelJson["rounds"]; 
-//   private isPlaying:boolean = false;
-//   private currentStep:number = 0;
-//   private speed:number = 800;
-//   private sounds = [
-//     new Audio('https://s3.amazonaws.com/freecodecamp/simonSound1.mp3'),
-//     new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3'),
-//     new Audio('https://s3.amazonaws.com/freecodecamp/simonSound3.mp3'),
-//     new Audio('https://s3.amazonaws.com/freecodecamp/simonSound4.mp3')
-//   ];
-
-//   ngOnInit() {
-//   }
-
-//   startGame(){
-//     $("#start").attr("disabled", "true");
-//     $("body").attr("style", "pointer-events: none");
-//     this.clearVariables();
-//     let stepsCount:number = this.rounds[Object.keys(this.rounds).find(i => this.rounds[i].level === this.level.toString())].steps;
-//     this.fillMachineColours(stepsCount);
-//     console.log(this.machineColours);
-//     this.showSteps();
-//     this.isPlaying = true;
-//   }
-
-//   validate(event){
-//     let self = this;
-//     if(this.isPlaying){
-//       this.sounds[this.colours.indexOf($(event.currentTarget).attr("colour"))].play().catch(function(){});
-//       this.userColours.push($(event.currentTarget).attr("colour"));
-//       if(this.userColours[this.currentStep] == this.machineColours[this.currentStep]){
-//         this.currentStep++;
-//       }
-//       else{
-//         alert("Fallaste");
-//         self.restartGame();
-//         return;
-//       }
-
-//       if(this.userColours.length === this.machineColours.length)
-//         self.winGame();
-//     }
-//   }
-
-//   winGame(){
-//     let self = this;
-//     if(this.level === 5){
-//       alert("Ganaste!!!");
-//       self.restartGame();
-//     }
-//     else{
-//       this.isPlaying = false;
-//       this.level++;
-//       setTimeout(function() {
-//         self.startGame();
-//       }, 1000);
-//     }
-//   }
-
-//   restartGame(){
-//     this.machineColours = [];
-//     this.isPlaying = false;
-//     this.level = 1;
-//     this.speed = 800;
-//     $("#start").removeAttr("disabled");
-//   }
-
-//   clearVariables(){
-//     this.userColours = [];
-//     this.currentStep=0;
-//   }
-
-//   fillMachineColours(steps){
-//     for(let x:number = 0; x < steps; x++){
-//       let randomValue = this.colours[Math.floor(Math.random() * this.colours.length)];
-//       this.machineColours.push(randomValue);
-//     }
-//   }  
-
-//   showSteps() {
-//     let self = this;
-//     if(self.currentStep > self.machineColours.length-1) {
-//       self.currentStep = 0;
-//       $("body").removeAttr("style");
-//       return;
-//     }
-//     var colour = self.machineColours[self.currentStep];
-//     setTimeout(function() {
-//       $(".pad").each(function(){
-//         if($(this).attr("colour") == colour){
-//           $(this).addClass("active");
-//           self.sounds[self.colours.indexOf(colour)].play();
-//         }
-//       });
-//     }, 300);
-//     setTimeout(function() {
-//       $(".pad").each(function(){
-//         if($(this).attr("colour") == colour){
-//           $(this).removeClass("active");        
-//         }
-//       });
-//       self.currentStep++;
-//       self.speed = self.rounds[Object.keys(self.rounds).find(i => self.rounds[i].level === self.level.toString())].speed;
-//       self.showSteps();
-//     }, self.speed);
-//   }
-// }
