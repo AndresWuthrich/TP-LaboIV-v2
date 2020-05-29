@@ -38,6 +38,10 @@ export class LoginComponent implements OnInit {
     if (this.usuario === 'admin' && this.clave === 'admin') {
       this.router.navigate(['/Principal']);
     }
+    else{
+      this.router.navigate(['/Juegos']);
+
+    }
   }
   MoverBarraDeProgreso(user:string, clave:string) {
     if(this.servicio.iniciarJugador(user, clave))
