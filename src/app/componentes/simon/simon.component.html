@@ -9,14 +9,23 @@
 
 <div class="container">
   <div class="simonBoard">
-    <div class="pad" id="pad1" colour="verde"></div>
-    <div class="pad" id="pad2" colour="rojo"></div>
-    <div class="pad" id="pad3" colour="amarillo"></div>
-    <div class="pad" id="pad4" colour="azul"></div>
+    <div class="pad" id="pad1" colour="green" (click)="validate($event)"></div>
+    <div class="pad" id="pad2" colour="red" (click)="validate($event)"></div>
+    <div class="pad" id="pad3" colour="yellow" (click)="validate($event)"></div>
+    <div class="pad" id="pad4" colour="blue" (click)="validate($event)"></div>
+    <div class="controls">
+      <button type="button" class="btn btn-warning" (click)="startGame()" id="start">Start</button>
+      <button type="button" class="btn btn-danger" (click)="restartGame()" id="reset">Nuevo</button>
+    </div>
   </div>
 
-  <div>
-    <img src="../../../assets/imagenes/outOfOrderadw.jpg" class="boton" style="width: 300px; height: 300px;">
+  <div *ngIf="terminoJuego" id='resultado' class="boton" style="width: 200px; height: 100px;">
+    <h2>{{resultado}}</h2>
+    <img src="{{imagen}}">
   </div>
+
+  <!-- <div>
+    <img src="../../../assets/imagenes/outOfOrderadw.jpg" class="boton" style="width: 300px; height: 300px;">
+  </div> -->
 </div>
 <div id="snackbar"></div>

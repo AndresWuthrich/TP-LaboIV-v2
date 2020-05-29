@@ -10,7 +10,7 @@ export class JuegoSimon extends Juego{
       }
 
     public verificar(){
-        if(this.ganador==true)
+        if(this.gano==true)
             return true;
         else
             return false;
